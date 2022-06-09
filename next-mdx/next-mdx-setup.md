@@ -4,3 +4,7 @@
 
 `npx create-next-app@latest -- typescript`
 
+```sh
+yarn add remark-gfm remark-math remark-frontmatter rehype-katex
+```
+
