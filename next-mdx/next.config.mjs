@@ -5,8 +5,12 @@ import remarkParse from 'remark-parse'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkRehype from 'remark-rehype'
-import rehypeStringify from 'rehype-stringify'
 import remarkMath from 'remark-math'
+
+import rehypeStringify from 'rehype-stringify'
+import rehypeKatex from 'rehype-katex'
+import rehypeMathjax from 'rehype-mathjax'
+import rehypeHighlight from "rehype-highlight";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -17,8 +21,8 @@ const nextConfig = {
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkParse, remarkFrontmatter, remarkGfm, remarkRehype, rehypeStringify, remarkMath],
-    rehypePlugins: [rehypeStringify],
+    remarkPlugins: [remarkParse, remarkFrontmatter, remarkGfm, remarkRehype, remarkMath],
+    rehypePlugins: [rehypeKatex, rehypeMathjax, rehypeStringify, rehypeHighlight],
   },
 });
 
