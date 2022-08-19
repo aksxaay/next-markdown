@@ -1,6 +1,6 @@
 ### next-mdx
 
-[video  source](https://www.youtube.com/playlist?list=LL)
+[video  source](https://www.youtube.com/watch?v=J_0SBJMxmcw&list=LL&index=39&t=2935s)
 
 `npx create-next-app@latest -- typescript`
 
@@ -21,3 +21,20 @@ here's one of the issues
 and they have a couple solutions, not convincing, but at-least I can understand a little bit.
 
 well the shiki package worked?
+
+fuck it i'm too dumb this is not going to work.
+
+delba's is too complicated she imports this thing inside `contentlayer.config.ts`
+
+maybe I should console log from every config file to see the order of execution of every config file.
+
+[leighhalliday - next-blog](https://github.com/leighhalliday/next-blog)
+
+> Getting MDX up and running with Next.js has never been easier thanks to Contentlayer: a content toolkit that makes working with content in your Next.js app super easy.
+
+i read this in build [static content site](https://www.youtube.com/watch?v=obJvzyHiQ9k)
+
+[contentlayer.dev](https://www.contentlayer.dev/)
+
+[tailblocks.cc](https://tailblocks.cc/)
+this one has really cool cards and things tailwindcss libraries
