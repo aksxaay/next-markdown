@@ -38,3 +38,12 @@ i read this in build [static content site](https://www.youtube.com/watch?v=obJvz
 
 [tailblocks.cc](https://tailblocks.cc/)
 this one has really cool cards and things tailwindcss libraries
+
+
+### vanilla method
+
+gonna try the vanilla method as tried by our fellow leighhalliday/next-blog
+
+okay I've done a fresh install of
+`yarn create next-app` didn't specify typescript but I think it does typescript by default.
+takes 163 seconds.
