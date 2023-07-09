@@ -63,7 +63,7 @@ npx create-next-app@13.4.1 next-app && cd next-app && npm i next@13.4.1
 ```
 
 ```sh
-npm i contentlayer@0.3.1 next-contentlayer@0.3.1
+pnpm i contentlayer@0.3.2 next-contentlayer@0.3.2
 ```
 test 1 -> it needed `pnpm`
 
@@ -72,3 +72,13 @@ yeah it just needed `pnpm` on a global install, somewhere inside.
 anyways, I have to restart my project
 
 added prettier and prettier-plugin-tailwindcss
+
+tailwind works, but contentlayer doesn't generate
+issue in 0.3.1 so now upgraded to 0.3.2 but it prolly doesn't work then
+
+install on `pnpm` makes `contentlayer dev` work
+
+this is what makes it work
+```sh
+pnpm i contentlayer@0.3.2 next-contentlayer@0.3.2
+```
