@@ -82,3 +82,34 @@ this is what makes it work
 ```sh
 pnpm i contentlayer@0.3.2 next-contentlayer@0.3.2
 ```
+
+> hard reset to next at "final final base starter project"
+
+```js
+const MyComponent = ({ params: { slug } }: Props)
+```
+
+this is how you destructure right there.
+
+html tags
+main - main content of a document
+header - idk have nav components
+
+to catch `/about` we're using a *catch-all segment*
+
+remember that the props that we catch since it is catch-all segment
+```js
+type Props = {
+  params: {
+    slug: string[],
+  }
+}
+```
+
+if we run build?
+output
+as expected all of the are
+```sh
+λ  (Server)  server-side renders
+```
+
