@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: "Not Found",
     description: "debug: generateMetadata() : Page doesn't exist",
-  };
+  } as Metadata;
 }
 
 async function getPageParams({ params }: Props) {

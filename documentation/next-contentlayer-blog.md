@@ -194,4 +194,12 @@ okay after my certain changes
 └ λ /posts/[slug]
 ```
 
-[slug] route is purely SSG
+`[slug]` route is purely SSG
+
+
+I was able to replicate the same thing for
+`posts/[slug]` route as well,
+
+but images don't render tbh
+
+`posts/[slug]` is purely SSG
