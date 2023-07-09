@@ -233,3 +233,27 @@ but fixed after
 ```sh
 npm install -D prettier@2.8 prettier-plugin-tailwindcss
 ```
+
+
+### remark and rehype plugins support
+
+[MDX Plugins (remark/rehype)](https://www.contentlayer.dev/docs/sources/files/mdx-d747e46d#mdx-plugins-remarkrehype)
+
+doesn't work as mentioned in contentlayer docs
+
+rehype plugins
+- rehype-autolink-headings
+- rehype-pretty-code
+- rehype-slug
+- remark-gfm
+
+unist-util-visit?
+
+fixing `rehypeAutolinkHeadings` seemed to work
+this entire part was taken from my `mdx-blog`
+
+[rehype website](https://rehype-pretty-code.netlify.app/) - explains everything
+
+to change theme just change [this line](../next-contentlayer/lib/rehypePrettyCode.ts#L105)
+
+ran `npm run preview` no issues
