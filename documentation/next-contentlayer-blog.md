@@ -203,3 +203,33 @@ I was able to replicate the same thing for
 but images don't render tbh
 
 `posts/[slug]` is purely SSG
+
+okay now that I've done all these things,
+
+checking back on the original website,
+they have
+- prettier headings
+- highlighting
+- other things I can't event describe
+- markdown looks like markdown
+
+there's an extra `typography` plugin from tailwind?
+
+> provides set of `prose` classes that you can add typographic fonts to
+>
+
+```sh
+pnpm install -D @tailwindcss/typography
+```
+
+the `@tailwindcss/typography` plugin literally auto styles everything, super easy
+
+and also prettier classes sorting for tailwind, while using `pnpm` it doesn't work
+
+tailwind issue with `prettier@3.0.0`
+
+but fixed after 
+
+```sh
+npm install -D prettier@2.8 prettier-plugin-tailwindcss
+```

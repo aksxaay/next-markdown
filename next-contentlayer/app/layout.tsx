@@ -18,12 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 ${interTight.className}`}
+        className={`min-h-screen bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-50 ${interTight.className}`}
       >
-        <div className="max-w-2xl mx-auto py-10 px-4">
+        <div className="mx-auto max-w-2xl px-4 py-10">
           <header>
             <div className="flex items-center justify-between">
-              <nav className="ml-auto text-sm font-medium space-x-6">
+              <nav className="ml-auto space-x-6 text-sm font-medium">
                 <Link href="/">Home</Link>
                 <Link href="/about">About</Link>
               </nav>

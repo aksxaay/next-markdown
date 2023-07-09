@@ -38,11 +38,13 @@ export default async function PostPage({ params }: PostProps) {
   if (post)
     return (
       <>
-        <article className="">
-          <h1>{post.title}</h1>
+        <article className="prose py-6 dark:prose-invert">
+          <h1 className="mb-2">{post.title}</h1>
           {/* {(post.description = undefined)} */}
-          <p>{post.description}</p>
-          <hr />
+          <p className="mt-0 text-xl text-slate-700  dark:text-slate-200 ">
+            {post.description}
+          </p>
+          <hr className="my-4" />
           <MDXComponentInterface code={post.body.code} />
         </article>
       </>
