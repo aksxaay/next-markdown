@@ -113,3 +113,85 @@ as expected all of the are
 λ  (Server)  server-side renders
 ```
 
+### About Page
+
+we received the slug
+
+dynamically generate the metadata
+```js
+
+```
+
+we're using `getPageParams` to retrieve `page` from `allPages`
+
+
+if `page` is found
+then => we display an article
+- title
+- description
+- body.code?
+
+I still don't understand Error Boundary that next talks about.
+
+```js
+export type Page = {
+  /** File path relative to `contentDirPath` */
+  _id: string
+  _raw: Local.RawDocumentData
+  type: 'Page'
+  title: string
+  description?: string | undefined
+  /** MDX file body */
+  body: MDX
+  slug: string
+  slugAsParams: string
+}
+```
+
+from here, MDX has 
+- raw
+- code (what we're using)
+
+this code we're feeding into `components/mdx-components`
+
+which internally has a `useMDXComponent` function from `next-contentlayer/hooks`
+
+revisit `mdx-bundler`
+
+basically we're getting returned `Component: useComponent()` and passed as props
+```js
+
+```
+
+I'm abstracting this mdx parsing logic away by calling it `MDXComponentRenderer`/`MdxComponentInterface`
+
+main point is, you can override the default behaviors by using [Custom MDX Components](https://www.contentlayer.dev/docs/sources/files/mdx-d747e46d#custom-mdx-components)
+
+interface vs type
+
+rn it's still SSR (Server)
+```sh
+λ /[...slug]
+λ /posts/[slug]
+```
+
+you can't export getPageParams, it wouldn't build for some reason
+
+to convert this to SSG, going to do some rehauls
+
+I need to export an array of paths or something.
+
+I forgot this thing ran server side and you can't debug like that.
+
+the `use client` shit is fucking real. After about a day I'm already getting used to this shit.
+
+okay after my certain changes
+
+```sh
+○ /                                      
+├ ● /[slug]                              
+├ ○ /favicon.ico                         
+└ λ /posts/[slug]
+```
+
+[slug] route is purely SSG
