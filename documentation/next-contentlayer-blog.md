@@ -257,3 +257,26 @@ this entire part was taken from my `mdx-blog`
 to change theme just change [this line](../next-contentlayer/lib/rehypePrettyCode.ts#L105)
 
 ran `npm run preview` no issues
+
+
+I think I can figure out how eventually understand all this prettification code, I need to understand how to manage the content fr. that it works on a 
+- pull basis
+- fix all the image links?
+- dynamic tags #next and things
+
+
+the idea is to have ISR and then upgrade it to **on-demand ISR** which seems to be the best solution for now. Later experiment with **github hooks**
+
+- Background Revalidation
+- On-demand
+
+```js
+export const revalidate = 60;
+```
+
+this not the only thing
++ can't understand it from the docs either.
++ revalidate doesn't work on dev mode.
+
+
+revalidate doesn't work because i'm not able to trigger contentlayer dev generation or something.

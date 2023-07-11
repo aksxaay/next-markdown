@@ -1,6 +1,8 @@
 // "use client";
 import React from "react";
 import { Metadata } from "next";
+import { Page } from "@/.contentlayer/generated";
+import { MDX } from "@/.contentlayer/generated";
 import { allPages } from "@/.contentlayer/generated";
 import { MDXComponentInterface } from "@/components/mdx-components";
 
@@ -9,6 +11,8 @@ type Props = {
     slug: string;
   };
 };
+
+export const revalidate = 10;
 
 export async function generateMetadata({ params }: Props) {
   const page = await getPageParams({ params });
