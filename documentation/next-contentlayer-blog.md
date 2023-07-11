@@ -280,3 +280,84 @@ this not the only thing
 
 
 revalidate doesn't work because i'm not able to trigger contentlayer dev generation or something.
+
+
+### changes to contentlayer (remote)
+
+[example contentlaye.config.ts // github repo](https://github.com/contentlayerdev/contentlayer/blob/main/examples/node-script-remote-content/contentlayer.config.ts#L61)
+
+we need to make certain changes to contentlayer to enable its **remote data fetching**.
+
+wth is `resolve(void 0)`
+
+time to prepare the git repo I guess.
+
+
+0.3.1 introduced dynamic content fetching in RSC
+[full example // contentlayer 0.3.1 rsc](https://github.com/contentlayerdev/contentlayer/tree/main/examples/next-rsc-dynamic)
+
+- try it out asap
+
+Testing
+- npm - no
+- pnpm - no
+- yarn - no
+
+it just refuses to work bruv.
+
+> Nested Component imports via MDX are suddenly not JSX transformed 
+
+delba recently had to fix this?
+
+[nested imports via MDX aren't jsx tformed](https://github.com/contentlayerdev/contentlayer/issues/309) suddenly that too?
+
+
+finally after hours
+got `next-rsc-dynamic` to work
+- fix `defineDocument` to `mdx`
+- `syncInterval`
+
+all this works on 
+`0.3.1` - rsc dynamic fetching
+`0.3.2` - also works (YES)
+
+throws a whole bunch of errors on `0.3.2` though
+
+✕ unmet peer esbuild@0.17.x: found 0.18.11
+
+I'll have to resolve dependency errors now.
+
+Apparently the fix was just to install everything that was showing up as errors.
+That's insane, what exactly is going on bruv
+
+
+```js
+"pnpm": {
+    "overrides": {
+      "@opentelemetry/api": "1.4.1",
+      "@opentelemetry/core": "1.13.0",
+      "@opentelemetry/exporter-trace-otlp-grpc": "0.39.1",
+      "@opentelemetry/resources": "1.13.0",
+      "@opentelemetry/sdk-trace-base": "1.13.0",
+      "@opentelemetry/sdk-trace-node": "1.13.0",
+      "@opentelemetry/semantic-conventions": "1.13.0"
+    }
+  },
+```
+
+add this in package.json and `pnpm install` everything fixes it's crazy
+
+resolved everything
+the difference was `makeSource` import I had to use from `remote-files` and not source
+
+But also Build no problem, however, the command doesn't run well on build.
+
+def I understand why it is experimental
+
+
+[Next js Typescript Plugin documentation issue](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
+
+if you have a bug / idea
+read [contributing guidelines](https://github.com/vercel/next.js/blob/2441ad4760955b96c7a92e01169ea54f05739af8/contributing.md)
+
+anyways so far from what I see, I'm unable to get next-rsc-dynamic to work properly? so I'm calling it quits.
