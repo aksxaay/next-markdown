@@ -4,6 +4,10 @@ import { Page } from "@/contentlayer.config";
 import { Metadata } from "next";
 import React from "react";
 
+//
+import { getSortedPagesData } from "@/lib/pagesHelper";
+import Pages from "@/components/Pages";
+
 type PostProps = {
   params: {
     slug: string;
@@ -11,6 +15,7 @@ type PostProps = {
 };
 
 export async function generateMetadata({ params }: PostProps) {
+  // test please remove
   const page = await getPostParams({ params });
 
   if (page)

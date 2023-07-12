@@ -133,3 +133,38 @@ SSR -> SSG
 tell next.js in advance by using the `getStaticParams()` better naming ngl.
 
 Next js, can now de-duplicate data by default?
+
+Now we have a new issue
+
+### Non serializable props
+
+> Non-serializable props - prop that cannot be transformed into a JSON-compatible format
+
+occurs in passing props server -> client
+
+
+### dave implementation (for SSR SSG ISR study)
+
+doing this to study basically
+- SSR
+- SSG
+- ISR
+
+and understand regular mdx struggles.
+
+understand `Post` type from contentlayer
+```js
+export type Page = {
+  /** ID */
+  _id: string
+  _raw: Record<string, any>
+  type: 'Page'
+  title: string
+  description?: string | undefined
+  /** MDX file body */
+  body: MDX
+  slug: string
+  slugAsParams: string
+}
+```
+

@@ -3,7 +3,8 @@ import React from "react";
 import { Metadata } from "next";
 import { Page } from "@/.contentlayer/generated";
 import { MDX } from "@/.contentlayer/generated";
-import { allPages } from "@/.contentlayer/generated";
+// import { allPages } from "@/.contentlayer/generated";
+import { getSortedPagesData } from "@/lib/pagesHelper";
 import { MDXComponentInterface } from "@/components/mdx-components";
 
 type Props = {
@@ -11,6 +12,9 @@ type Props = {
     slug: string;
   };
 };
+
+const allPages = getSortedPagesData();
+console.log("allPages :", allPages);
 
 export const revalidate = 10;
 
@@ -47,13 +51,10 @@ export default async function PagePage({ params }: Props) {
           <h1>{page.title}</h1>
           {page.description && <p className="text-xl">{page.description}</p>}
           <hr />
-          {/* this renders MDX */}
-          <MDXComponentInterface code={page.body.code} />
-          <hr />
-          {/* {page.body.code}
-          <hr />
-          {page.body.raw}
-          <hr /> */}
+          {/* <MDXComponentInterface code={page.body.code} /> */}
+          <p className="mt-0 text-xl text-slate-700  dark:text-slate-200 ">
+            {page.body}
+          </p>
         </article>
       </>
     );
