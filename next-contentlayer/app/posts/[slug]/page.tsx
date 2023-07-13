@@ -1,12 +1,11 @@
-import { allPosts } from "@/.contentlayer/generated";
+// import { allPosts } from "@/.contentlayer/generated";
 import { MDXComponentInterface } from "@/components/mdx-components";
 import { Page } from "@/contentlayer.config";
+import getFormattedDate from "@/lib/getFormattedDate";
+import { getSortedPostsData } from "@/lib/postsHelper";
 import { Metadata } from "next";
+import Link from "next/link";
 import React from "react";
-
-//
-import { getSortedPagesData } from "@/lib/pagesHelper";
-import Pages from "@/components/Pages";
 
 type PostProps = {
   params: {
@@ -32,6 +31,9 @@ export async function generateMetadata({ params }: PostProps) {
 
 // function to get Post from params
 async function getPostParams({ params: { slug } }: PostProps) {
+  // console.log("slug", slug);
+  const allPosts = await getSortedPostsData();
+  // console.log(allPosts);
   const post = allPosts.find((post) => post.slugAsParams === slug);
 
   return post;
@@ -40,23 +42,30 @@ async function getPostParams({ params: { slug } }: PostProps) {
 export default async function PostPage({ params }: PostProps) {
   const post = await getPostParams({ params });
 
-  if (post)
+  if (post) {
+    const date = getFormattedDate(post.date);
     return (
       <>
         <article className="prose py-6 dark:prose-invert">
           <h1 className="mb-2">{post.title}</h1>
-          {/* {(post.description = undefined)} */}
+          <p className="text-xl">{date}</p>
           <p className="mt-0 text-xl text-slate-700  dark:text-slate-200 ">
             {post.description}
           </p>
           <hr className="my-4" />
-          <MDXComponentInterface code={post.body.code} />
+          {/* <MDXComponentInterface code={post.body.code} /> */}
+          <section dangerouslySetInnerHTML={{ __html: post.body }} />
+          <p className="mt-0 text-xl text-slate-700  dark:text-slate-200 ">
+            <Link href="/">Back</Link>
+          </p>
         </article>
       </>
     );
+  }
 }
 
 export async function generateStaticParams() {
+  const allPosts = await getSortedPostsData();
   const exportProps: PostProps[] = allPosts.map((post) => ({
     params: {
       slug: post.slugAsParams,

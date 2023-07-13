@@ -168,3 +168,6 @@ export type Page = {
 }
 ```
 
+weird fix I had to employ because was getting a promise inside a map
+
+when you hover over the links, they **auto load** which is crazy from next.

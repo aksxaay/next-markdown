@@ -6,13 +6,13 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
-const pagesDirectory = path.join(process.cwd(), "content/pages");
+const postsDirectory = path.join(process.cwd(), "content/posts");
 
-export async function getSortedPagesData(
+export async function getSortedPostsData(
   bodyOption: "preview" | "full" = "full"
 ) {
   // get file under /content/posts
-  const fileNames = fs.readdirSync(pagesDirectory);
+  const fileNames = fs.readdirSync(postsDirectory);
   /*
   fileNames : [
     'deploying-next-apps-copy.mdx',
@@ -27,7 +27,7 @@ export async function getSortedPagesData(
       const _id = fileName.replace(/\.mdx/, "");
 
       // read markdown file as string
-      const fullPath = path.join(pagesDirectory, fileName);
+      const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, "utf8");
 
       // use gray-matter to parse the post metadata
@@ -50,16 +50,16 @@ export async function getSortedPagesData(
         .process(matterData.content);
       const contentHtml = processedContent.toString();
 
-      const Page: Page = {
+      const Page: Post = {
         _id,
-        type: "Page",
+        type: "Post",
         // required
         title: matterData.data.title,
         date: matterData.data.date,
         description: matterData?.data?.description,
         body: bodyOption == "full" ? contentHtml : "bodyOption: preview",
-        slug: _id, // content/pages/file-name.md
-        slugAsParams: _id, // file-name 
+        slug: "posts/" + _id, // content/pages/file-name.md
+        slugAsParams: _id, // file-name
       };
 
       return Page;
