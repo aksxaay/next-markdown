@@ -57,7 +57,7 @@ export default async function PagePage({ params }: Props) {
           {/* <MDXComponentInterface code={page.body.code} /> */}
           <section dangerouslySetInnerHTML={{ __html: page.body }} />
           <p className="mt-0 text-xl text-slate-700  dark:text-slate-200 ">
-           <Link href='/'>Back</Link>
+            <Link href="/">Back</Link>
           </p>
         </article>
       </>

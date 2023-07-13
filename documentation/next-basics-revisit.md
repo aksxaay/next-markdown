@@ -171,3 +171,30 @@ export type Page = {
 weird fix I had to employ because was getting a promise inside a map
 
 when you hover over the links, they **auto load** which is crazy from next.
+
+
+### mdx conversion
+
+new `/mdx` route
+have to set the component to "use-client"
+called the new `mdxRs` feature
+
++ it is unformatted bruv
+
+Read all the way through dawg.
+[Configuring/MDX // next.js](https://nextjs.org/docs/app/building-your-application/configuring/mdx)
+
+I also enabled this as a workspace, so that I can view the documentation folder in the same thing as well
+
+trying to apply `remark` and `rehype` plugins and I have to convert `next.config.js` into an ES module format
+
+```sh
+
+```
+
+
+to understand about [`@next/mdx`](https://github.com/vercel/next.js/tree/c56915842a41ce5cd1328b36dff44004352c9f15/packages/next-mdx)
+it is called next.js packages, that come included?
+
+
+These are [mdxjs.com/advanced/typescript](https://web.archive.org/web/20200718173926/https://mdxjs.com/advanced/typescript) docs
