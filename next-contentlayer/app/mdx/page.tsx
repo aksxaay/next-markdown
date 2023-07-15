@@ -2,5 +2,5 @@
 import HelloWorld from "../hello.mdx";
 
 export default function Page() {
-  return <HelloWorld />;
+  return <HelloWorld className="prose" />;
 }

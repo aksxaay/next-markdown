@@ -92,6 +92,9 @@ dependencies:
   rehype-slug:
     specifier: ^5.1.0
     version: 5.1.0
+  rehype-stringify:
+    specifier: ^9.0.3
+    version: 9.0.3
   remark:
     specifier: ^14.0.3
     version: 14.0.3
@@ -101,6 +104,12 @@ dependencies:
   remark-html:
     specifier: ^15.0.2
     version: 15.0.2
+  remark-parse:
+    specifier: ^10.0.2
+    version: 10.0.2
+  remark-rehype:
+    specifier: ^10.1.0
+    version: 10.1.0
   sharp:
     specifier: ^0.32.2
     version: 0.32.2
@@ -113,6 +122,9 @@ dependencies:
   typescript:
     specifier: 5.0.4
     version: 5.0.4
+  unified:
+    specifier: ^10.1.2
+    version: 10.1.2
   unist-util-visit:
     specifier: ^5.0.0
     version: 5.0.0

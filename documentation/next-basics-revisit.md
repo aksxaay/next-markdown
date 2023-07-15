@@ -198,3 +198,72 @@ it is called next.js packages, that come included?
 
 
 These are [mdxjs.com/advanced/typescript](https://web.archive.org/web/20200718173926/https://mdxjs.com/advanced/typescript) docs
+
+the docs are suggesting using `unified`
+
+
+`remarkHtml` a shortcut for .use(remarkRehype).use(rehypeStringify).
+
+```js
+const file = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .process(await read('example.md'))
+```
+
+don't quite understand the order
+order is 
+remarkParse -> remarkGfm -> remarkRehype -> rehypeStringify
+
+but yeah we're replacing the last 2 with `remarkHtml`
+
+but if we're using any `rehype` we need to use it though
+
+
+### remark + rehypePrettyCode example
+```js
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+import rehypePrettyCode from 'rehype-pretty-code';
+
+async function main() {
+  const file = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypePrettyCode, {
+      // See Options section below.
+      theme: "monokai",
+    })
+    .use(rehypeStringify)
+    .process('`const numbers = [1, 2, 3]{:js}`');
+
+  console.log(String(file));
+}
+
+main();
+```
+
+Output
+```html
+<p><span data-rehype-pretty-code-fragment=""><code data-language="js" data-theme="default" style="background-color: #272822"><span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> numbers </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> [</span><span style="color: #AE81FF">1</span><span style="color: #F8F8F2">, </span><span style="color: #AE81FF">2</span><span style="color: #F8F8F2">, </span><span style="color: #AE81FF">3</span><span style="color: #F8F8F2">]</span></span></code></span></p>
+```
+
+so it's working here, lemme follow the exact same format
+
+employed a fix presented here with `oniguruma`
+
+had to comment out the rehypePrettyCode, the fix doesn't work
+
+feeling pretty defeated
+
+Let's just check out _shuding's example
+
+HOW THE FUCK did shuding create this [documentation template](https://github.com/shuding/nextra)
+- any change is rendered instantly?
+- and I DON"T SEE `contentlayer`??? BOY WHAT THE FUCK.

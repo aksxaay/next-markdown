@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "next-contentlayer"
+		},
+		{
+			"path": "documentation"
+		}
+	],
+	"settings": {
+		"typescript.tsdk": "node_modules/typescript/lib"
+	}
+}

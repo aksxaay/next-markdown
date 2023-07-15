@@ -3,8 +3,13 @@ import path from "path";
 import matter from "gray-matter";
 
 // md processing
-import { remark } from "remark";
+import { unified } from "unified";
 import html from "remark-html";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeStringify from 'rehype-stringify';
 
 const pagesDirectory = path.join(process.cwd(), "content/pages");
 
@@ -45,8 +50,14 @@ export async function getSortedPagesData(
       const matterData = matter(fileContents);
 
       // remark + html processing
-      const processedContent = await remark()
-        .use(html)
+      const processedContent = await unified()
+      .use(remarkParse)
+      .use(remarkGfm)
+      .use(remarkRehype)
+      // .use(rehypePrettyCode, {
+      //   theme: "monokai",
+      // })
+      .use(rehypeStringify)
         .process(matterData.content);
       const contentHtml = processedContent.toString();
 
@@ -59,7 +70,7 @@ export async function getSortedPagesData(
         description: matterData?.data?.description,
         body: bodyOption == "full" ? contentHtml : "bodyOption: preview",
         slug: _id, // content/pages/file-name.md
-        slugAsParams: _id, // file-name 
+        slugAsParams: _id, // file-name
       };
 
       return Page;

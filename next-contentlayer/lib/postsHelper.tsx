@@ -5,6 +5,11 @@ import matter from "gray-matter";
 // md processing
 import { remark } from "remark";
 import html from "remark-html";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype/lib";
+import rehypeStringify from "rehype-stringify";
+import rehypePrettyCode from "rehype-pretty-code";
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
 
@@ -46,7 +51,13 @@ export async function getSortedPostsData(
 
       // remark + html processing
       const processedContent = await remark()
-        .use(html)
+        .use(remarkParse)
+        .use(remarkGfm)
+        .use(remarkRehype)
+        .use(rehypePrettyCode, {
+          theme: "monokai",
+        })
+        .use(rehypeStringify)
         .process(matterData.content);
       const contentHtml = processedContent.toString();
 
