@@ -9,7 +9,7 @@ import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypePrettyCode from "rehype-pretty-code";
-import rehypeStringify from 'rehype-stringify';
+import rehypeStringify from "rehype-stringify";
 
 const pagesDirectory = path.join(process.cwd(), "content/pages");
 
@@ -48,18 +48,19 @@ export async function getSortedPagesData(
     }
     */
       const matterData = matter(fileContents);
-
+      /*
       // remark + html processing
       const processedContent = await unified()
       .use(remarkParse)
       .use(remarkGfm)
       .use(remarkRehype)
       // .use(rehypePrettyCode, {
-      //   theme: "monokai",
-      // })
-      .use(rehypeStringify)
+        //   theme: "monokai",
+        // })
+        .use(rehypeStringify)
         .process(matterData.content);
-      const contentHtml = processedContent.toString();
+        const contentHtml = processedContent.toString();
+      */
 
       const Page: Page = {
         _id,
@@ -68,7 +69,7 @@ export async function getSortedPagesData(
         title: matterData.data.title,
         date: matterData.data.date,
         description: matterData?.data?.description,
-        body: bodyOption == "full" ? contentHtml : "bodyOption: preview",
+        body: bodyOption == "full" ? matterData?.content : "bodyOption: preview",
         slug: _id, // content/pages/file-name.md
         slugAsParams: _id, // file-name
       };

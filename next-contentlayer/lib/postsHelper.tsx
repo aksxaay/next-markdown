@@ -54,9 +54,9 @@ export async function getSortedPostsData(
         .use(remarkParse)
         .use(remarkGfm)
         .use(remarkRehype)
-        .use(rehypePrettyCode, {
-          theme: "monokai",
-        })
+        // .use(rehypePrettyCode, {
+        //   theme: "monokai",
+        // })
         .use(rehypeStringify)
         .process(matterData.content);
       const contentHtml = processedContent.toString();

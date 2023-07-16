@@ -267,3 +267,28 @@ Let's just check out _shuding's example
 HOW THE FUCK did shuding create this [documentation template](https://github.com/shuding/nextra)
 - any change is rendered instantly?
 - and I DON"T SEE `contentlayer`??? BOY WHAT THE FUCK.
+
+I got it to working using `compileMDX` but it doesn't seem to support custom components yet, so not sure what to quite do about it.
+
+Going to do more work built-in support `mdx`
+
+Anyways, I think I should be blog ready to post about this shit.
+
+I just had to import the button for it to work in `/about` route.
+**NOPE** doesn't work.
+
+we're going to add syntax highlighting :D
+`highlight.js`
+`rehype-highlight`
+`rehype-slug` - add `id` to headings
+`rehype-autolink-headings` - add links to the `id`s back to themselves
+
+oh for highlight js, it just auto highlights using css
+
+Autolinking: `http://localhost:3000/about#information-we-collect`
+
+yeah you don't need to import it, you need to pass it to the `components` property in `compileMDX`
+
+
+- `[slug]` - uses `compileMDX`
+- `posts/[slug]` - uses the dangerously set html, from matter I guess.

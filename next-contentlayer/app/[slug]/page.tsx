@@ -9,6 +9,17 @@ import { MDXComponentInterface } from "@/components/mdx-components";
 import getFormattedDate from "@/lib/getFormattedDate";
 import Link from "next/link";
 
+import { compileMDX } from "next-mdx-remote/rsc";
+// formatting options
+import rehypeAutolinkHeadings from "rehype-autolink-headings/lib";
+import rehypeHighlight from "rehype-highlight/lib";
+import rehypeSlug from "rehype-slug";
+import "highlight.js/styles/github-dark.css";
+
+// components
+import Button from "@/components/Button";
+import Image from "next/image";
+
 type Props = {
   params: {
     slug: string;
@@ -45,6 +56,33 @@ async function getPageParams({ params }: Props) {
 export default async function PagePage({ params }: Props) {
   const page = await getPageParams({ params });
 
+  const { content } = await compileMDX<{
+    title: string;
+    description: string;
+    date: string;
+  }>({
+    source: page?.body,
+    components: {
+      Button,
+      Image,
+    },
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [
+          rehypeHighlight,
+          rehypeSlug,
+          [
+            rehypeAutolinkHeadings,
+            {
+              behavior: "wrap",
+            },
+          ],
+        ],
+      },
+    },
+  });
+
   if (page) {
     const date = getFormattedDate(page.date);
     return (
@@ -55,7 +93,8 @@ export default async function PagePage({ params }: Props) {
           <p className="text-xl">{page.description}</p>
           <hr />
           {/* <MDXComponentInterface code={page.body.code} /> */}
-          <section dangerouslySetInnerHTML={{ __html: page.body }} />
+          {/* <section dangerouslySetInnerHTML={{ __html: page.body }} /> */}
+          {content}
           <p className="mt-0 text-xl text-slate-700  dark:text-slate-200 ">
             <Link href="/">Back</Link>
           </p>
