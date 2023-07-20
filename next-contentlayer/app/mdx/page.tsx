@@ -1,6 +1,15 @@
 "use client";
-import HelloWorld from "../hello.mdx";
+
+import HelloWorld, { meta } from "./hello.mdx";
 
 export default function Page() {
-  return <HelloWorld className="prose" />;
+  return (
+    <>
+      <article className="prose py-6 dark:prose-invert">
+        <p>{meta.author}</p>
+        {/* {HelloWorld.toString()} */}
+        <HelloWorld />
+      </article>
+    </>
+  );
 }

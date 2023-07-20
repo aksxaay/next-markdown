@@ -292,3 +292,16 @@ yeah you don't need to import it, you need to pass it to the `components` proper
 
 - `[slug]` - uses `compileMDX`
 - `posts/[slug]` - uses the dangerously set html, from matter I guess.
+
+
+[leerob / nextjs markdown blog](https://nextjs.org/blog/markdown)
+- your type depends on your data source
+
+
+> Note: Frontmatter is **not** supported by `@next/mdx`
+
+
+Overall I was able to import a component, but that's about it, seems pretty useless, I can't tap into this frontmatter at all.
+
+
+Resource to simplify `next-mdx-remote`
